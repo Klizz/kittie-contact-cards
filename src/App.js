@@ -4,7 +4,7 @@ import Directory from './components/Directory';
 function App() {
   return(
     <div>
-      <h1 className="blue-text lighten-4">Tarjetas de gatos</h1>
+      <h1 className="pink-text">Tarjetas de gatitos <i className="material-icons medium">favorite</i> </h1>
       < Directory />
     </div>
   )

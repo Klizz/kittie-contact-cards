@@ -1,14 +1,15 @@
 import React from "react";
 
+
 const ContactCard = props => (
   <div>
-    <div class="col s4">
-      <div class="card blue lighten-4">
-        <div class="card-image">
+    <div className="col s4">
+      <div className="card">
+        <div className="card-image">
           <img src={props.info.imgUrl} alt="Not found"></img>
-          <span class="card-title">{props.info.name}</span>
+          <span className="card-title">{props.info.name}</span>
         </div>
-        <div class="card-content">
+        <div className="card-content">
           <p><b>Telefono:</b> {props.info.phone}</p>
           <p><b>Email:</b> {props.info.email}</p>
         </div>
