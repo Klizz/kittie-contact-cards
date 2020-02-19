@@ -4,6 +4,16 @@ import contactsData from "./ContactData";
 import Form from "./Form";
 import Button from './Button';
 
+/*
+
+IMAGENES PARA TESTEAR
+
+https://i.pinimg.com/originals/9f/c2/a0/9fc2a0d3ab30d9c20322714eeb66417b.jpg
+https://www.warrenphotographic.co.uk/photography/bigs/45832-Silver-tabby-cat-sitting-on-blue-background.jpg
+
+*/
+
+
 class Directory extends Component {
   constructor() {
     super();
@@ -105,13 +115,15 @@ class Directory extends Component {
     ));
     return (
       <div>
-        <div className="form-box">
+        <div className="form-box grey lighten-5">
+          <h5>Agrega un contacto nuevo</h5>
         <Form 
         name="Nombre"
         type="text"
         value={this.state.newContact.name}
         placeholder="Nombre"
         handleChange={this.handleName}
+        required
         />
         <Form 
         name="Image URL"
@@ -119,6 +131,7 @@ class Directory extends Component {
         value={this.state.newContact.imgUrl}
         placeholder="Image URL"
         handleChange={this.handleImage}
+        required
         />
         <Form 
         name="Correo"
@@ -126,6 +139,7 @@ class Directory extends Component {
         value={this.state.newContact.email}
         placeholder="email"
         handleChange={this.handleEmail}
+        required
         />
         <Form 
         name="Telefono"
@@ -133,6 +147,7 @@ class Directory extends Component {
         value={this.state.newContact.phone}
         placeholder="Telefono"
         handleChange={this.handlePhone}
+        required
         />
         < Button
         btnStyle="btn-floating btn-large waves-effect waves-light green"
@@ -150,9 +165,6 @@ class Directory extends Component {
         <div className="row">
           {this.state.cards}
           {cards}
-          {this.state.allContacts.length === 0 && (
-            <div className="button-box center-align"></div>
-          )}
         </div>
       </div>
     );
