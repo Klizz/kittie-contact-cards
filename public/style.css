@@ -1,6 +1,6 @@
 .card {
-    min-height: 600px;
-    height: 100%;
+    height: 250px;
+    padding: 30px
 }
 
 .button-box {

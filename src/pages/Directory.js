@@ -1,89 +1,53 @@
 import React, { Component } from "react";
-import ContactCard from "./ContactCard";
-import contactsData from "./ContactData";
-import Form from "./Form";
-import Button from './Button';
-
-/*
-
-IMAGENES PARA TESTEAR
-
-https://i.pinimg.com/originals/9f/c2/a0/9fc2a0d3ab30d9c20322714eeb66417b.jpg
-https://www.warrenphotographic.co.uk/photography/bigs/45832-Silver-tabby-cat-sitting-on-blue-background.jpg
-
-*/
+import ContactCard from "../components/ContactCard";
+import contactsData from "../components/ContactData";
+import Form from "../components/Form";
+import Button from '../components/Button';
 
 
 class Directory extends Component {
-  constructor() {
-    super();
-    this.state = {
+      state = {
       newContact: {
-        id: '',
         name: '',
-        imgUrl: '',
+        website: '',
         phone: '',
         email: ''
       },
       allContacts: contactsData
-    };
-    this.handleName = this.handleName.bind(this);
-    this.handleImage = this.handleImage.bind(this);
-    this.handleEmail = this.handleEmail.bind(this);
-    this.handlePhone = this.handlePhone.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.clearForm = this.clearForm.bind(this);
-  }
+    }
 
-  handleName(e) {
-    let value = e.target.value;
-    this.setState(
-      prevState => ({
-        newContact: {
-          ...prevState.newContact,
-          name: value
-        }
+    componentDidMount() {
+      const url = 'https://jsonplaceholder.typicode.com/users';
+      fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          allContacts: data
+        })
       })
-    )
-  }
+    }
 
-  handleImage(e) {
-    let value = e.target.value;
-    this.setState(
-      prevState => ({
-        newContact: {
-          ...prevState.newContact,
-          imgUrl: value
-        }
-      })
-    )
-  }
+    handleInput = (e) => {
+      let value = e.target.value;
+      let name = e.target.name;
+      let website = e.target.image;
+      let email = e.target.email;
+      let phone = e.target.phone
+      this.setState(
+        prevState => ({
+          newUser: {
+            ...prevState.newUser,
+            [name]: value,
+            [website]: value,
+            [email]: value,
+            [phone]: value
+          }
+        })
+      );
+    }
 
-  handleEmail(e) {
-    let value = e.target.value;
-    this.setState(
-      prevState => ({
-        newContact: {
-          ...prevState.newContact,
-          email: value
-        }
-      })
-    )
-  }
-
-  handlePhone(e) {
-    let value = e.target.value;
-    this.setState(
-      prevState => ({
-        newContact: {
-          ...prevState.newContact,
-          phone: value
-        }
-      })
-    )
-  }
-
-  handleFormSubmit(e) {
+  handleFormSubmit = (e) => {
     e.preventDefault();
     let userData = this.state.newContact;
       this.setState(prevState => ({
@@ -97,7 +61,7 @@ class Directory extends Component {
     }));
   }
 
-  clearForm(e) {
+  clearForm = (e) => {
     e.preventDefault();
     this.setState({
         newContact: {
@@ -122,15 +86,15 @@ class Directory extends Component {
         type="text"
         value={this.state.newContact.name}
         placeholder="Nombre"
-        handleChange={this.handleName}
+        handleChange={this.handleInput}
         required
         />
         <Form 
-        name="Image URL"
+        name="website"
         type="text"
-        value={this.state.newContact.imgUrl}
-        placeholder="Image URL"
-        handleChange={this.handleImage}
+        value={this.state.newContact.website}
+        placeholder="Website"
+        handleChange={this.handleInput}
         required
         />
         <Form 
@@ -138,7 +102,7 @@ class Directory extends Component {
         type="email"
         value={this.state.newContact.email}
         placeholder="email"
-        handleChange={this.handleEmail}
+        handleChange={this.handleInput}
         required
         />
         <Form 
@@ -146,7 +110,7 @@ class Directory extends Component {
         type="number"
         value={this.state.newContact.phone}
         placeholder="Telefono"
-        handleChange={this.handlePhone}
+        handleChange={this.handleInput}
         required
         />
         < Button

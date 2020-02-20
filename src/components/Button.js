@@ -7,9 +7,10 @@ const Button = props => {
         title={props.title}
         onClick={props.action}
       >
-        <i class="material-icons">{props.iconTitle}</i>
+        <i className="material-icons">{props.iconTitle}</i>
       </button>
   );
 };
 
 export default Button;
+
